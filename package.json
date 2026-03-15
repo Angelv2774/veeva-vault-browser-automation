@@ -1,7 +1,7 @@
 {
-  "name": "veeva-vault-browser-automation",
+  "name": "@browser-automation-hub/veeva-vault-browser-automation",
   "version": "1.0.0",
-  "description": "Browser automation for Veeva Vault — automate document submission, regulatory workflow approvals, vault content management, and life sciences compliance tasks.",
+  "description": "Browser automation for Veeva Vault — automate document submission, regulatory workflows, and compliance tasks",
   "main": "src/actions.js",
   "scripts": {
     "start": "node examples/basic-login.js",
@@ -16,7 +16,7 @@
     "browser-automation",
     "puppeteer",
     "playwright",
-    "anchorbrowser",
+    "anchor-browser",
     "nodejs"
   ],
   "license": "MIT",
@@ -35,5 +35,8 @@
   "homepage": "https://github.com/Browser-Automation-Hub/veeva-vault-browser-automation#readme",
   "bugs": {
     "url": "https://github.com/Browser-Automation-Hub/veeva-vault-browser-automation/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
